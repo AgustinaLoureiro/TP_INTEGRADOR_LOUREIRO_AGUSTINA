@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>brote — Detalle</title>
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <nav class="navbar-brote">
+        <div class="container d-flex justify-content-between align-items-center flex-wrap gap-3">
+            <a href="index.html" class="brote-logo">
+                <img src="img/brote-icon.png" alt="brote" class="brote-icon-img">brote
+            </a>
+            <div class="d-flex align-items-center gap-3">
+                <button id="btnTema" class="icon-btn fs-5">🌙</button>
+                <a href="carrito.html" class="icon-btn fs-5">
+                    🛒
+                    <span id="contadorCarrito" class="badge bg-danger position-absolute translate-middle rounded-pill" style="display:none; top:-2px; left:22px; font-size:0.6rem;">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    <div class="marca-alumna">Trabajo Integrador · Programación III · Agustina Loureiro</div>
+
+    <div class="container my-4">
+        <a href="productos.html" class="btn btn-sm btn-secundario-brote mb-3">← Volver a productos</a>
+
+        <div id="detalleCargando" class="text-center my-5">
+            <div class="spinner-border" style="color:var(--green-dark);" role="status"></div>
+        </div>
+
+        <div id="detalleContenido" class="row g-4 d-none">
+            <div class="col-md-5">
+                <img id="detalleImagen" class="w-100 rounded" style="max-height:400px;object-fit:cover;">
+            </div>
+            <div class="col-md-7">
+                <span id="detalleCategoria" class="badge bg-secondary mb-2"></span>
+                <h2 id="detalleNombre" class="font-display"></h2>
+                <p id="detalleDescripcion" class="text-muted"></p>
+                <h3 id="detallePrecio" class="my-3"></h3>
+                <p id="detalleStock" class="small text-muted"></p>
+                <div id="detalleAccion"></div>
+            </div>
+        </div>
+
+        <div id="detalleNoEncontrado" class="text-center text-muted my-5 d-none">
+            <p>No se encontró el producto solicitado.</p>
+            <a href="productos.html" class="btn btn-primario">Ver todos los productos</a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/carrito-utils.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/detalle.js"></script>
+</body>
+</html>

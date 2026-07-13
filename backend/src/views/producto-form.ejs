@@ -1,0 +1,64 @@
+<%- include("partials/head.ejs") %>
+<%- include("partials/navbar.ejs") %>
+
+<div class="container my-4">
+    <h3><%= producto ? "Editar producto" : "Nuevo producto" %></h3>
+
+    <form id="formProducto" class="bg-white p-4 rounded shadow-sm" enctype="multipart/form-data" novalidate>
+        <div class="mb-3">
+            <label class="form-label">Nombre</label>
+            <input type="text" class="form-control" name="nombre" value="<%= producto ? producto.nombre : '' %>" required minlength="2">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Descripción</label>
+            <textarea class="form-control" name="descripcion" rows="3"><%= producto ? producto.descripcion : '' %></textarea>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <label class="form-label">Precio</label>
+                <input type="number" step="0.01" min="0.01" class="form-control" name="precio" value="<%= producto ? producto.precio : '' %>" required>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label class="form-label">Stock</label>
+                <input type="number" min="0" class="form-control" name="stock" value="<%= producto ? producto.stock : '' %>" required>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label class="form-label">Subcategoría</label>
+                <select class="form-select" name="id_subcategoria" required>
+                    <option value="">Seleccionar...</option>
+                    <% categorias.forEach(categoria => { %>
+                        <optgroup label="<%= categoria.nombre %>">
+                            <% categoria.subcategorias.forEach(sub => { %>
+                                <option value="<%= sub.id %>"
+                                    <%= (producto && producto.id_subcategoria === sub.id) ? "selected" : "" %>>
+                                    <%= sub.nombre %>
+                                </option>
+                            <% }) %>
+                        </optgroup>
+                    <% }) %>
+                </select>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Imagen <%= producto ? "(dejar vacío para mantener la actual)" : "" %></label>
+            <input type="file" class="form-control" name="imagen" accept="image/*" <%= producto ? "" : "required" %>>
+            <% if (producto && producto.imagen) { %>
+                <img src="/uploads/<%= producto.imagen %>" class="mt-2" style="width:80px;height:80px;object-fit:cover;border-radius:6px;">
+            <% } %>
+        </div>
+
+        <div id="mensajeError" class="alert alert-danger d-none"></div>
+
+        <button type="submit" class="btn btn-success"><%= producto ? "Guardar cambios" : "Agregar" %></button>
+        <a href="/admin/dashboard" class="btn btn-outline-secondary">Cancelar</a>
+    </form>
+</div>
+
+<script>
+    const producto = <%- producto ? JSON.stringify(producto) : "null" %>;
+</script>
+<script src="/js/producto-form.js"></script>
+<%- include("partials/footer.ejs") %>

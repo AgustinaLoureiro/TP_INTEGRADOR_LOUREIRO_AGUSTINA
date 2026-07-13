@@ -1,0 +1,44 @@
+<%- include("partials/head.ejs") %>
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 85vh;">
+    <div class="card shadow-sm" style="width: 100%; max-width: 400px;">
+        <div class="card-body p-4">
+            <div class="text-center mb-4">
+                <img src="/img/brote-icon.png" alt="brote" style="width:56px;height:56px;">
+                <h4 class="mt-2 mb-0 brote-brand">brote</h4>
+                <small class="text-muted">Panel de administración</small>
+            </div>
+
+            <% if (error) { %>
+                <div class="alert alert-danger py-2"><%= error %></div>
+            <% } %>
+
+            <form id="loginForm" action="/admin/login" method="POST" novalidate>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-success w-100">Ingresar</button>
+            </form>
+
+            <!-- Boton de acceso rapido: autocompleta el form para que los profesores
+                 (testers) puedan probar el panel sin tener que pedir credenciales -->
+            <button type="button" id="btnAccesoRapido" class="btn btn-outline-secondary w-100 mt-2">
+                ⚡ Acceso rápido (tester)
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById("btnAccesoRapido").addEventListener("click", () => {
+        document.getElementById("email").value = "admin@brote.com";
+        document.getElementById("password").value = "admin123";
+    });
+</script>
+
+<%- include("partials/footer.ejs") %>

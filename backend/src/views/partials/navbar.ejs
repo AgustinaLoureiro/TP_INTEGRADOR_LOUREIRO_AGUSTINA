@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-success">
+    <div class="container-fluid">
+        <a class="navbar-brand brote-brand d-flex align-items-center gap-2" href="/admin/dashboard">
+            <img src="/img/brote-icon.png" alt="brote" style="width:24px;height:24px;">
+            <span>brote</span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navAdmin">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navAdmin">
+            <% if (typeof usuario !== "undefined" && usuario) { %>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/productos/nuevo">Nuevo producto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/registros">Registros</a>
+                    </li>
+                </ul>
+                <span class="navbar-text text-white me-3">Hola, <%= usuario.nombre %></span>
+                <a href="/admin/logout" class="btn btn-outline-light btn-sm">Salir</a>
+            <% } %>
+        </div>
+    </div>
+</nav>
+
+<div class="bg-white border-bottom py-1 text-center small text-muted">
+    Trabajo Integrador · Programación III · Agustina Loureiro
+</div>

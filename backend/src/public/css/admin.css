@@ -1,0 +1,33 @@
+body {
+    font-family: 'Jost', system-ui, sans-serif;
+    background-color: #F7F2E6;
+}
+
+.navbar-brand, .brote-brand {
+    font-family: 'Fraunces', serif !important;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.navbar.bg-success {
+    background-color: #3F6B4B !important;
+}
+
+.btn-success {
+    background-color: #D4A94A;
+    border-color: #D4A94A;
+    color: #2E2A22;
+}
+.btn-success:hover {
+    background-color: #BD9339;
+    border-color: #BD9339;
+    color: #2E2A22;
+}
+
+.table-success {
+    --bs-table-bg: #E7ECDE;
+}
+
+.table img {
+    display: block;
+}

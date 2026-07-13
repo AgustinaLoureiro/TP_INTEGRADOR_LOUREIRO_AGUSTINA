@@ -1,0 +1,68 @@
+<%- include("partials/head.ejs") %>
+<%- include("partials/navbar.ejs") %>
+
+<div class="container my-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3>Panel de productos</h3>
+        <div class="d-flex gap-2">
+            <a href="/admin/ventas/excel" class="btn btn-outline-success">⬇️ Excel ventas</a>
+            <a href="/admin/productos/nuevo" class="btn btn-success">+ Nuevo producto</a>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover bg-white align-middle">
+            <thead class="table-success">
+                <tr>
+                    <th>Imagen</th>
+                    <th>Nombre</th>
+                    <th>Categoría</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% productos.forEach(producto => { %>
+                    <tr>
+                        <td>
+                            <% if (producto.imagen) { %>
+                                <img src="/uploads/<%= producto.imagen %>" alt="<%= producto.nombre %>" style="width:50px;height:50px;object-fit:cover;border-radius:6px;">
+                            <% } else { %>
+                                <span class="text-muted">Sin imagen</span>
+                            <% } %>
+                        </td>
+                        <td><%= producto.nombre %></td>
+                        <td>
+                            <%= producto.subcategoria ? producto.subcategoria.categoria.nombre + " / " + producto.subcategoria.nombre : "-" %>
+                        </td>
+                        <td>$<%= Number(producto.precio).toFixed(2) %></td>
+                        <td><%= producto.stock %></td>
+                        <td>
+                            <% if (producto.activo) { %>
+                                <span class="badge bg-success">Activo</span>
+                            <% } else { %>
+                                <span class="badge bg-secondary">Inactivo</span>
+                            <% } %>
+                            <% if (producto.stock === 0) { %>
+                                <span class="badge bg-warning text-dark">Sin stock</span>
+                            <% } %>
+                        </td>
+                        <td>
+                            <a href="/admin/productos/<%= producto.id %>/editar" class="btn btn-sm btn-outline-primary">Editar</a>
+                            <% if (producto.activo) { %>
+                                <button class="btn btn-sm btn-outline-danger btn-baja" data-id="<%= producto.id %>">Eliminar</button>
+                            <% } else { %>
+                                <button class="btn btn-sm btn-outline-success btn-alta" data-id="<%= producto.id %>">Activar</button>
+                            <% } %>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="/js/dashboard.js"></script>
+<%- include("partials/footer.ejs") %>
